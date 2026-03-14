@@ -1,0 +1,382 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   GALAXIE COPERNICUS — LOCAL FONT
+   Drop your licensed woff2 files into:
+     /public/fonts/GalaxieCopernicus-Book.woff2
+     /public/fonts/GalaxieCopernicus-BookItalic.woff2  (optional)
+   Purchase / license: commercialtype.com
+───────────────────────────────────────────── */
+@font-face {
+  font-family: "Galaxie Copernicus";
+  src: url("/fonts/GalaxieCopernicus-Book.woff2") format("woff2"),
+       url("/fonts/GalaxieCopernicus-Book.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Galaxie Copernicus";
+  src: url("/fonts/GalaxieCopernicus-BookItalic.woff2") format("woff2"),
+       url("/fonts/GalaxieCopernicus-BookItalic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─────────────────────────────────────────────
+   CSS CUSTOM PROPERTIES — GiraffeGraph Palette
+   Palette: Honey Bronze · Deep Space Blue · 
+            Charcoal Blue · Pale Slate · White
+───────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg-base: #0b1624;
+  --bg-surface: #1d2e47;
+  --bg-elevated: #243650;
+  --bg-hover: #324155;
+
+  /* Borders */
+  --border-subtle: #1a2f44;
+  --border-default: #253d5a;
+  --border-accent: #e9ae3f;
+
+  /* Brand — Honey Bronze */
+  --primary: #e9ae3f;
+  --primary-bright: #f0c468;
+  --primary-dark: #c4893a;
+  --primary-glow: rgba(233, 174, 63, 0.15);
+
+  /* Secondary — Pale Slate */
+  --secondary: #a7adb3;
+  --secondary-glow: rgba(167, 173, 179, 0.1);
+
+  /* Accents */
+  --accent-teal: #52c4a4;
+  --accent-amber: #e9ae3f;
+  --accent-blue: #7ba7cc;
+  --accent-warm: #d4785a;
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #a7adb3;
+  --text-muted: #5a6a7e;
+  --text-inverse: #1d2e47;
+
+  /* Gradients */
+  --gradient-hero: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    rgba(233, 174, 63, 0.18) 0%,
+    transparent 60%
+  );
+  --gradient-card: linear-gradient(135deg, #1d2e47 0%, #202f4a 100%);
+  --gradient-brand: linear-gradient(135deg, #e9ae3f 0%, #c4893a 100%);
+  --gradient-bronze: linear-gradient(135deg, #f0c468 0%, #e9ae3f 60%, #c4893a 100%);
+  --gradient-slate: linear-gradient(135deg, #a7adb3 0%, #e9ae3f 100%);
+  --gradient-glow: radial-gradient(
+    circle at center,
+    rgba(233, 174, 63, 0.4) 0%,
+    transparent 70%
+  );
+}
+
+/* ─────────────────────────────────────────────
+   BASE RESETS
+───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY SCALE
+   Display headings: Galaxie Copernicus Book
+   Body: Inter  |  Code: JetBrains Mono
+───────────────────────────────────────────── */
+.heading-xl {
+  font-family: "Galaxie Copernicus", "Palatino Linotype", "Book Antiqua", "Georgia", serif;
+  font-size: clamp(44px, 6vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.heading-l {
+  font-family: "Galaxie Copernicus", "Palatino Linotype", "Book Antiqua", "Georgia", serif;
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.14;
+}
+
+.heading-m {
+  font-family: "Galaxie Copernicus", "Palatino Linotype", "Book Antiqua", "Georgia", serif;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.22;
+}
+
+.heading-s {
+  font-family: "Galaxie Copernicus", "Palatino Linotype", "Book Antiqua", "Georgia", serif;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.35;
+}
+
+.body-l {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+.body-m {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ─────────────────────────────────────────────
+   GRADIENT TEXT UTILITY
+───────────────────────────────────────────── */
+.gradient-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-bronze {
+  background: var(--gradient-bronze);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-slate {
+  background: var(--gradient-slate);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────
+   SHIMMER ANIMATION
+───────────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(233, 174, 63, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ─────────────────────────────────────────────
+   NODE FLOAT ANIMATIONS (hero background)
+───────────────────────────────────────────── */
+@keyframes node-float-1 {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-8px) translateX(3px); }
+}
+@keyframes node-float-2 {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(6px) translateX(-4px); }
+}
+@keyframes node-float-3 {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-10px) translateX(2px); }
+}
+@keyframes node-float-4 {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(7px) translateX(5px); }
+}
+@keyframes node-float-5 {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-5px) translateX(-3px); }
+}
+
+.node-f1 { animation: node-float-1 11s ease-in-out infinite; }
+.node-f2 { animation: node-float-2 9s ease-in-out infinite 1s; }
+.node-f3 { animation: node-float-3 13s ease-in-out infinite 0.5s; }
+.node-f4 { animation: node-float-4 8s ease-in-out infinite 2s; }
+.node-f5 { animation: node-float-5 15s ease-in-out infinite 0.3s; }
+.node-f6 { animation: node-float-1 10s ease-in-out infinite 3s; }
+.node-f7 { animation: node-float-2 12s ease-in-out infinite 1.5s; }
+.node-f8 { animation: node-float-3 14s ease-in-out infinite 2.5s; }
+.node-f9 { animation: node-float-4 9s ease-in-out infinite 0.8s; }
+.node-f10 { animation: node-float-5 11s ease-in-out infinite 4s; }
+
+/* ─────────────────────────────────────────────
+   PULSE RING (graph node selected)
+───────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ─────────────────────────────────────────────
+   DASH FLOW (SVG edge animation)
+───────────────────────────────────────────── */
+@keyframes dash-flow {
+  0% { stroke-dashoffset: 200; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.dash-animated {
+  stroke-dasharray: 6 4;
+  animation: dash-flow 6s linear infinite;
+}
+
+/* ─────────────────────────────────────────────
+   PIPELINE DOT TRAVEL — How It Works connector
+───────────────────────────────────────────── */
+@keyframes dot-travel {
+  0% { left: 0%; }
+  100% { left: 100%; }
+}
+
+@keyframes dot-travel-horiz {
+  0%   { left: 0; }
+  100% { left: calc(100% - 1rem); }
+}
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* ─────────────────────────────────────────────
+   FOCUS VISIBLE
+───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─────────────────────────────────────────────
+   REDUCED MOTION
+───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   MESH GRID BACKGROUND
+───────────────────────────────────────────── */
+.mesh-grid {
+  background-image: linear-gradient(
+      rgba(167, 173, 179, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(167, 173, 179, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─────────────────────────────────────────────
+   BENTO CARD HOVER GLOW
+───────────────────────────────────────────── */
+.bento-card {
+  transition: transform 200ms ease, box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 0 40px rgba(233, 174, 63, 0.04);
+  border-color: var(--border-accent) !important;
+}
+
+/* ─────────────────────────────────────────────
+   PRICING GRADIENT BORDER TRICK
+───────────────────────────────────────────── */
+.pricing-featured {
+  position: relative;
+}
+
+.pricing-featured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: var(--gradient-brand);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────
+   TAB ACTIVE STATE
+───────────────────────────────────────────── */
+.tab-active {
+  background: var(--gradient-brand);
+  color: #fff;
+}
+
+/* ─────────────────────────────────────────────
+   ACCORDION
+───────────────────────────────────────────── */
+.accordion-content {
+  overflow: hidden;
+}

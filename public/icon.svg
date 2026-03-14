@@ -1,0 +1,29 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Back legs -->
+  <rect x="22" y="26" width="3.5" height="11" rx="1.75" fill="#C4893A"/>
+  <rect x="27" y="26" width="3.5" height="11" rx="1.75" fill="#B8793A"/>
+  <!-- Body -->
+  <rect x="10" y="18" width="22" height="11" rx="5" fill="#E9AE3F"/>
+  <!-- Front legs -->
+  <rect x="12" y="26" width="3.5" height="11" rx="1.75" fill="#C4893A"/>
+  <rect x="17" y="26" width="3.5" height="11" rx="1.75" fill="#B8793A"/>
+  <!-- Neck -->
+  <path d="M17 28 C16 22 15 16 16 10" stroke="#E9AE3F" stroke-width="5.5" stroke-linecap="round"/>
+  <!-- Head -->
+  <ellipse cx="18" cy="8" rx="5.5" ry="4" fill="#F0C468"/>
+  <!-- Snout -->
+  <ellipse cx="22" cy="9.5" rx="2.5" ry="1.8" fill="#E9AE3F"/>
+  <!-- Eye -->
+  <circle cx="19" cy="6.8" r="1.1" fill="#1D2E47"/>
+  <circle cx="19.4" cy="6.4" r="0.35" fill="white"/>
+  <!-- Ossicones -->
+  <rect x="14" y="2" width="2.2" height="6" rx="1.1" fill="#C4893A"/>
+  <rect x="18" y="3" width="2" height="5" rx="1" fill="#C4893A"/>
+  <!-- Spots -->
+  <ellipse cx="16" cy="21" rx="2.2" ry="1.5" fill="#C4893A" opacity="0.35"/>
+  <ellipse cx="23" cy="20" rx="2.8" ry="1.8" fill="#C4893A" opacity="0.3"/>
+  <ellipse cx="28" cy="23" rx="1.8" ry="1.2" fill="#C4893A" opacity="0.28"/>
+  <!-- Graph node -->
+  <circle cx="35" cy="6" r="2.5" fill="#A7ADB3" opacity="0.5"/>
+  <line x1="32.5" y1="7" x2="22" y2="10" stroke="#A7ADB3" stroke-width="1" stroke-dasharray="2 2" opacity="0.35"/>
+</svg>
