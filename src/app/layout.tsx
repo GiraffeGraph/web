@@ -17,6 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://giraffegraph.com"),
+  alternates: { canonical: "/" },
   title: "GiraffeGraph — Open-Source Human-in-the-Loop Knowledge Graph Engine",
   description:
     "An open-source engine where LLMs propose knowledge graph facts and humans verify them — preventing hallucination and schema drift. First case study: hadith isnad chains.",
