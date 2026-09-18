@@ -44,3 +44,22 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = "Button";
+
+interface ButtonLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  variant?: "primary" | "secondary" | "ghost";
+  size?: "sm" | "md" | "lg";
+  children: React.ReactNode;
+}
+
+export function ButtonLink({ variant = "primary", size = "md", className = "", children, ...props }: ButtonLinkProps) {
+  return (
+    <motion.a
+      whileHover={{ scale: variant === "primary" ? 1.02 : 1 }}
+      whileTap={{ scale: 0.98 }}
+      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      {...(props as React.ComponentProps<typeof motion.a>)}
+    >
+      {children}
+    </motion.a>
+  );
+}

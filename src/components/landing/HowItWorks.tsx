@@ -22,36 +22,36 @@ const steps = [
   {
     num: "02",
     icon: Upload,
-    title: "Upload Your Data",
-    desc: "Paste transcripts, upload scripts, drop in documents. GiraffeGraph normalizes every source into processable units.",
+    title: "Ingest Sources",
+    desc: "Load source texts — hadith collections, documents, transcripts. Each source is split into citable units.",
     color: "#A7ADB3",
   },
   {
     num: "03",
     icon: Cpu,
     title: "AI Extraction",
-    desc: "The extraction engine identifies entities, relationships, events and state changes — aligned to your exact schema.",
+    desc: "The LLM proposes entities and relations — constrained to your schema and linked to the exact source span.",
     color: "#E9AE3F",
   },
   {
     num: "04",
     icon: CheckSquare,
     title: "Review & Validate",
-    desc: "AI flags uncertain items for your approval. You merge, reject or edit — keeping full control of data quality.",
+    desc: "Nothing enters the graph unapproved. You accept, reject, edit or merge — ungrounded claims are flagged.",
     color: "#52C4A4",
   },
   {
     num: "05",
     icon: GitMerge,
     title: "Graph Grows",
-    desc: "Each new input adds a delta on top of existing nodes. Your graph evolves with every episode, document or case.",
+    desc: "Each approved batch lands as a versioned delta on top of the existing graph — never an overwrite.",
     color: "#E9AE3F",
   },
   {
     num: "06",
     icon: Search,
     title: "Explore & Query",
-    desc: "Navigate characters, events and relationships visually. Query with Cypher, run GraphRAG, or build agent layers.",
+    desc: "Walk chains visually, query relationships, and trace any fact back to its source and its reviewer.",
     color: "#7BA7CC",
   },
 ];
@@ -72,7 +72,7 @@ export default function HowItWorks() {
             6 steps
           </h2>
           <p className="body-m text-[#A7ADB3] max-w-xl mx-auto">
-            Every step is dashboard-manageable. No code required.
+            The model proposes. A human decides. The graph only keeps what was approved.
           </p>
         </AnimatedSection>
 

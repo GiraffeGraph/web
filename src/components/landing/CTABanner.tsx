@@ -1,10 +1,11 @@
 "use client";
 
-import { Calendar } from "lucide-react";
+import { Github } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { GradientText } from "@/components/ui/GradientText";
-import { Button } from "@/components/ui/Button";
+import { ButtonLink } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
+import { GITHUB_ORG_URL } from "@/lib/links";
 
 export default function CTABanner() {
   return (
@@ -29,31 +30,34 @@ export default function CTABanner() {
 
           <h2 className="heading-l mb-5">
             <GradientText variant="brand">
-              Your data has connections.
+              Built in the open.
             </GradientText>
             <br />
-            <span className="text-white">Let&apos;s map them.</span>
+            <span className="text-white">Follow along.</span>
           </h2>
           <p className="body-m text-[#A7ADB3] mb-10">
-            Start with a free project. No credit card required.
+            The first release and the paper are on the way. Watch the repositories to hear first.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button
+            <ButtonLink
+              href={GITHUB_ORG_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               variant="primary"
               size="lg"
               className="text-[16px] shadow-[0_0_32px_rgba(233,174,63,0.4)]"
             >
-              Build Your First Graph →
-            </Button>
-            <Button variant="secondary" size="lg">
-              <Calendar size={16} aria-hidden="true" />
-              Schedule a Demo
-            </Button>
+              <Github size={18} aria-hidden="true" />
+              Follow on GitHub
+            </ButtonLink>
+            <ButtonLink href="#research" variant="secondary" size="lg">
+              About the Research →
+            </ButtonLink>
           </div>
 
           <div className="flex items-center justify-center gap-4 text-[13px] text-[#5A6A7E]">
-            {["No credit card", "Cancel anytime", "GDPR compliant"].map(
+            {["Open source", "Research project", "No sign-up"].map(
               (item, i) => (
                 <span key={i} className="flex items-center gap-4">
                   {i > 0 && (

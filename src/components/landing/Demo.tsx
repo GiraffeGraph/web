@@ -1,129 +1,105 @@
 "use client";
 
-import { Play } from "lucide-react";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { GradientText } from "@/components/ui/GradientText";
 
-const stats = [
-  { value: "12 Episodes", label: "Processed", color: "#E9AE3F", bg: "rgba(233,174,63,0.08)" },
-  { value: "247 Entities", label: "Extracted", color: "#A7ADB3", bg: "rgba(167,173,179,0.08)" },
-  { value: "1,089 Relations", label: "Mapped", color: "#D4785A", bg: "rgba(212,120,90,0.08)" },
+// Isnad of Sahih al-Bukhari #1, listed from the collector back to the Prophet.
+const chain = [
+  { name: "al-Bukhārī", note: "collector" },
+  { name: "al-Ḥumaydī", note: "ʿAbd Allāh b. al-Zubayr" },
+  { name: "Sufyān b. ʿUyayna", note: "also written “Ibn ʿUyayna”", variant: true },
+  { name: "Yaḥyā b. Saʿīd al-Anṣārī", note: "pivot of the chain" },
+  { name: "Muḥammad b. Ibrāhīm al-Taymī", note: "" },
+  { name: "ʿAlqama b. Waqqāṣ al-Laythī", note: "" },
+  { name: "ʿUmar b. al-Khaṭṭāb", note: "companion" },
+  { name: "The Prophet ﷺ", note: "", root: true },
+];
+
+const reasons = [
+  {
+    title: "Ground truth exists",
+    desc: "Classical rijāl literature documents who narrated from whom, so extracted chains can be checked against scholarship.",
+    color: "#52C4A4",
+    bg: "rgba(82,196,164,0.08)",
+  },
+  {
+    title: "Zero tolerance for errors",
+    desc: "One invented or misplaced narrator changes how a hadith is graded. Hallucination is not a cosmetic problem here.",
+    color: "#D4785A",
+    bg: "rgba(212,120,90,0.08)",
+  },
+  {
+    title: "Names vary everywhere",
+    desc: "The same narrator appears by kunya, nisba or laqab. Entity resolution needs a human expert in the loop.",
+    color: "#E9AE3F",
+    bg: "rgba(233,174,63,0.08)",
+  },
 ];
 
 export default function Demo() {
   return (
-    <section className="py-24 px-4 sm:px-6 mesh-grid bg-[#0D1D30] border-y border-[#1A2F44]">
+    <section id="case-study" className="py-24 px-4 sm:px-6 mesh-grid bg-[#0D1D30] border-y border-[#1A2F44]">
       <div className="max-w-4xl mx-auto">
         <AnimatedSection className="text-center mb-12">
+          <p className="label text-[#F0C468] mb-4">Case Study</p>
           <h2 className="heading-l text-white mb-4">
-            See the Graph{" "}
-            <GradientText variant="brand">Come Alive</GradientText>
+            Hadith{" "}
+            <GradientText variant="brand">Isnad Chains</GradientText>
           </h2>
-          <p className="body-m text-[#A7ADB3] max-w-lg mx-auto">
-            Watch how a 3-episode transcript becomes a fully queryable story
-            universe — in minutes.
+          <p className="body-m text-[#A7ADB3] max-w-xl mx-auto">
+            An isnad is the chain of narrators through which a hadith was
+            transmitted — a graph by nature, and a demanding test for LLM extraction.
           </p>
         </AnimatedSection>
 
-        {/* Video placeholder */}
         <AnimatedSection delay={0.15}>
-          <div
-            className="relative rounded-[16px] overflow-hidden border border-[#253D5A] cursor-pointer group"
-            style={{ aspectRatio: "16/9" }}
-            role="button"
-            tabIndex={0}
-            aria-label="Play GiraffeGraph Story Demo video"
-          >
-            {/* BG */}
-            <div className="absolute inset-0 bg-[#1D2E47]" />
-            {/* Gradient overlay */}
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(233,174,63,0.06) 0%, transparent 70%)",
-              }}
-            />
-
-            {/* Graph silhouette */}
-            <svg
-              className="absolute inset-0 w-full h-full opacity-20"
-              viewBox="0 0 800 450"
-              aria-hidden="true"
-            >
-              {[
-                [200, 180, 300, 220], [300, 220, 450, 200], [450, 200, 550, 250],
-                [300, 220, 350, 320], [350, 320, 500, 300], [500, 300, 550, 250],
-                [200, 180, 250, 300], [250, 300, 350, 320], [600, 180, 550, 250],
-                [600, 180, 650, 280], [650, 280, 500, 300],
-              ].map(([x1, y1, x2, y2], i) => (
-                <line
-                  key={i}
-                  x1={x1} y1={y1} x2={x2} y2={y2}
-                  stroke="#E9AE3F"
-                  strokeWidth="1.5"
-                  strokeOpacity="0.4"
-                />
+          <div className="rounded-[16px] border border-[#253D5A] bg-[#1D2E47] p-5 sm:p-8">
+            <div className="flex items-center justify-between gap-3 mb-6 flex-wrap">
+              <span className="text-[13px] font-semibold text-white">Ṣaḥīḥ al-Bukhārī #1 — “Actions are judged by intentions”</span>
+              <span className="text-[11px] font-mono text-[#5A6A7E]">NARRATED_FROM ↓</span>
+            </div>
+            <ol className="relative">
+              {chain.map((n, i) => (
+                <li key={n.name} className="relative flex items-start gap-4 pb-5 last:pb-0">
+                  {i < chain.length - 1 && (
+                    <span className="absolute left-[7px] top-5 bottom-0 w-px bg-[#324155]" aria-hidden="true" />
+                  )}
+                  <span
+                    className="relative mt-1 w-[15px] h-[15px] rounded-full flex-shrink-0 border-2"
+                    style={{
+                      borderColor: n.root ? "#52C4A4" : "#E9AE3F",
+                      background: n.root ? "rgba(82,196,164,0.25)" : "rgba(233,174,63,0.2)",
+                    }}
+                    aria-hidden="true"
+                  />
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 min-w-0">
+                    <span className="text-[15px] text-white">{n.name}</span>
+                    {n.note && (
+                      <span
+                        className={`text-[12px] ${n.variant ? "text-[#E9AE3F] border border-[rgba(233,174,63,0.35)] bg-[rgba(233,174,63,0.1)] px-2 py-0.5 rounded-full" : "text-[#5A6A7E]"}`}
+                      >
+                        {n.note}
+                      </span>
+                    )}
+                  </div>
+                </li>
               ))}
-              {[
-                [200, 180, 18], [300, 220, 22], [450, 200, 16], [550, 250, 20],
-                [350, 320, 15], [250, 300, 14], [500, 300, 18], [600, 180, 16],
-                [650, 280, 14],
-              ].map(([cx, cy, r], i) => (
-                <circle key={i} cx={cx} cy={cy} r={r} fill="#E9AE3F" opacity="0.25" />
-              ))}
-            </svg>
-
-            {/* Play button */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div
-                className="w-20 h-20 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
-                style={{
-                  background: "linear-gradient(135deg, #E9AE3F 0%, #C4893A 100%)",
-                  boxShadow: "0 0 40px rgba(233,174,63,0.4)",
-                }}
-              >
-                <Play
-                  size={28}
-                  className="text-[#1D2E47] ml-1"
-                  fill="#1D2E47"
-                  aria-hidden="true"
-                />
-              </div>
-            </div>
-
-            {/* Label */}
-            <div className="absolute bottom-4 left-4 flex items-center gap-2">
-              <span className="text-[12px] font-medium text-[#A7ADB3] bg-[rgba(11,22,36,0.8)] px-2.5 py-1 rounded-lg backdrop-blur-sm border border-[#1A2F44]">
-                GiraffeGraph — Story Demo
-              </span>
-            </div>
-
-            {/* Timestamp */}
-            <div className="absolute bottom-4 right-4">
-              <span className="text-[12px] font-mono text-[#A7ADB3] bg-[rgba(11,22,36,0.8)] px-2 py-1 rounded backdrop-blur-sm">
-                4:32
-              </span>
-            </div>
+            </ol>
           </div>
         </AnimatedSection>
 
-        {/* Stats */}
         <AnimatedSection delay={0.25}>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-            {stats.map((stat, i) => (
+            {reasons.map((r) => (
               <div
-                key={i}
-                className="rounded-xl border border-[#1A2F44] p-4 text-center"
-                style={{ backgroundColor: stat.bg }}
+                key={r.title}
+                className="rounded-xl border border-[#1A2F44] p-4"
+                style={{ backgroundColor: r.bg }}
               >
-                <p
-                  className="text-[20px] font-bold tracking-tight"
-                  style={{ color: stat.color }}
-                >
-                  {stat.value}
+                <p className="text-[15px] font-semibold" style={{ color: r.color }}>
+                  {r.title}
                 </p>
-                <p className="text-[13px] text-[#5A6A7E] mt-0.5">{stat.label}</p>
+                <p className="text-[13px] text-[#A7ADB3] mt-1.5 leading-relaxed">{r.desc}</p>
               </div>
             ))}
           </div>

@@ -8,36 +8,28 @@ import { GradientText } from "@/components/ui/GradientText";
 
 const faqs = [
   {
-    q: "What types of data can I upload?",
-    a: "GiraffeGraph accepts plain text, Markdown, PDFs, Word documents, screenplay formats (FDX, Fountain), and direct paste. Any document containing entities and relationships can be processed. We normalize all sources into processable segments before extraction.",
+    q: "Is GiraffeGraph open source?",
+    a: "Yes. GiraffeGraph is developed as an open-source project, and the code will be published on GitHub under an open-source license. There are no paid plans.",
   },
   {
-    q: "Do I need to know Neo4j or Cypher to use GiraffeGraph?",
-    a: "Not at all. The Graph Explorer and visual dashboard let you navigate and query your graph without writing a single line of Cypher. When you're ready to go deeper, we provide a built-in Cypher console and export-to-Neo4j for advanced use cases.",
+    q: "Can I use it today?",
+    a: "Not yet. The engine and the paper are both in development. Follow the GiraffeGraph organization on GitHub to be notified when the first release is out.",
   },
   {
-    q: "How is GiraffeGraph different from a simple NER/entity extraction tool?",
-    a: "Traditional NER tools extract generic entities (person, place, org) with no concept of your domain. GiraffeGraph is schema-driven — every extraction is guided by your custom node types, relations, and properties. It also tracks state changes over time and resolves duplicates with an entity resolution engine.",
+    q: "What does \"hallucination\" mean here?",
+    a: "An extracted fact that the source text does not support — for example, a narrator or a link between two narrators that appears nowhere in the chain. GiraffeGraph ties every proposed triple to its source span and keeps it out of the graph until a human approves it.",
   },
   {
-    q: "Can I use my own LLM or AI model?",
-    a: "Custom LLM providers are available on the Enterprise plan. You can connect your own OpenAI, Anthropic, Azure, or on-premise model endpoints. All extraction prompts are transparent and configurable.",
+    q: "What is schema drift?",
+    a: "When an LLM invents its own entity and relation types across runs — HEARD_FROM in one batch, TOLD or narratedBy in the next — the graph slowly stops matching the schema you designed. GiraffeGraph locks the schema and turns every new type into a proposal instead.",
   },
   {
-    q: "What happens to my schema if my data grows in new directions?",
-    a: "Schema Studio supports iterative expansion. You can add new node types and relation types at any point. The Schema Drift Detection feature (Pro+) alerts you when your data suggests types not in your current schema, so your schema evolves naturally.",
+    q: "Why hadith isnad chains?",
+    a: "Isnads are graphs by nature, classical scholarship provides ground truth to check against, narrator names vary heavily, and a single wrong link changes how a hadith is graded. That makes them a demanding, well-defined test for grounded extraction.",
   },
   {
-    q: "Is my data private and secure?",
-    a: "All data is encrypted at rest and in transit. We never use your data to train shared models. Enterprise customers can choose on-premise deployment for full data isolation. We are GDPR compliant and SOC 2 Type II certified.",
-  },
-  {
-    q: "Can I export my knowledge graph?",
-    a: "Yes. Pro and Enterprise plans support full export to Neo4j (Cypher dump or direct write), JSON-LD, and CSV. Your schema and all graph data are fully portable — no lock-in.",
-  },
-  {
-    q: "What domains work best with GiraffeGraph?",
-    a: "Any domain with structured relationships hidden in unstructured text. Current strong use cases: story/narrative (TV, film, fiction), legal (case law, contracts), research (academic papers, knowledge bases), and enterprise (process knowledge, incident management). The schema-driven approach means you can model any domain.",
+    q: "Does it replace hadith scholars?",
+    a: "No. The model only proposes; the expert decides. The goal is to take the mechanical work off the expert's plate while keeping every judgement in human hands.",
   },
 ];
 
@@ -90,7 +82,7 @@ function AccordionItem({ q, a, index }: { q: string; a: string; index: number })
 
 export default function FAQ() {
   return (
-    <section className="py-24 px-4 sm:px-6 bg-[#0D1D30] border-t border-[#1A2F44]">
+    <section id="faq" className="py-24 px-4 sm:px-6 bg-[#0B1624] border-t border-[#1A2F44]">
       <div className="max-w-5xl mx-auto">
         <AnimatedSection className="text-center mb-14">
           <h2 className="heading-l text-white mb-4">

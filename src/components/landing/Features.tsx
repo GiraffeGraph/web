@@ -9,17 +9,17 @@ import { Badge } from "@/components/ui/Badge";
 
 function SchemaStudioVisual() {
   const nodeTypes = [
-    { label: "Character", color: "#E9AE3F", ai: false },
-    { label: "Event", color: "#A7ADB3", ai: false },
-    { label: "Alliance", color: "#D4785A", ai: true },
-    { label: "Location", color: "#52C4A4", ai: false },
+    { label: "Narrator", color: "#E9AE3F", ai: false },
+    { label: "Hadith", color: "#A7ADB3", ai: false },
+    { label: "Teacher", color: "#D4785A", ai: true },
+    { label: "Collection", color: "#52C4A4", ai: false },
   ];
   return (
     <div className="mt-5 rounded-xl bg-[#0B1624] border border-[#1A2F44] overflow-hidden">
       <div className="flex items-center justify-between px-3 py-2 border-b border-[#1A2F44]">
         <span className="text-[11px] font-semibold text-white">Node Types</span>
         <span className="text-[9px] bg-[rgba(82,196,164,0.15)] border border-[rgba(82,196,164,0.3)] text-[#52C4A4] px-2 py-0.5 rounded-full">
-          v3 — Active
+          v1 — Locked
         </span>
       </div>
       {nodeTypes.map((nt, i) => (
@@ -31,7 +31,7 @@ function SchemaStudioVisual() {
           <span className="text-[12px] text-[#A7ADB3] flex-1">{nt.label}</span>
           {nt.ai && (
             <span className="text-[9px] bg-[rgba(233,174,63,0.15)] border border-[rgba(233,174,63,0.3)] text-[#E9AE3F] px-1.5 py-0.5 rounded-full animate-pulse">
-              AI Suggestion
+              Proposed type
             </span>
           )}
           {nt.ai && (
@@ -53,15 +53,16 @@ function ExtractionVisual() {
         <div className="w-2 h-2 rounded-full bg-[#D4785A]" />
         <div className="w-2 h-2 rounded-full bg-[#E9AE3F]" />
         <div className="w-2 h-2 rounded-full bg-[#52C4A4]" />
-        <span className="text-[10px] text-[#5A6A7E] ml-1">extraction_run_024.json</span>
+        <span className="text-[10px] text-[#5A6A7E] ml-1">bukhari_001.extraction.json</span>
       </div>
       <pre className="text-[10px] leading-relaxed overflow-x-auto">
         <span className="text-[#5A6A7E]">{"{"}</span>{"\n"}
-        {"  "}<span className="text-[#7BA7CC]">&quot;type&quot;</span><span className="text-[#A7ADB3]">: </span><span className="text-[#52C4A4]">&quot;Character&quot;</span>,{"\n"}
-        {"  "}<span className="text-[#7BA7CC]">&quot;name&quot;</span><span className="text-[#A7ADB3]">: </span><span className="text-[#52C4A4]">&quot;Ali Yılmaz&quot;</span>,{"\n"}
+        {"  "}<span className="text-[#7BA7CC]">&quot;type&quot;</span><span className="text-[#A7ADB3]">: </span><span className="text-[#52C4A4]">&quot;Narrator&quot;</span>,{"\n"}
+        {"  "}<span className="text-[#7BA7CC]">&quot;name&quot;</span><span className="text-[#A7ADB3]">: </span><span className="text-[#52C4A4]">&quot;Sufyān b. ʿUyayna&quot;</span>,{"\n"}
+        {"  "}<span className="text-[#7BA7CC]">&quot;span&quot;</span><span className="text-[#A7ADB3]">: </span><span className="text-[#52C4A4]">&quot;ḥaddathanā Sufyān…&quot;</span>,{"\n"}
         {"  "}<span className="text-[#7BA7CC]">&quot;confidence&quot;</span><span className="text-[#A7ADB3]">: </span><span className="text-[#E9AE3F]">0.94</span>,{"\n"}
         {"  "}<span className="text-[#7BA7CC]">&quot;relations&quot;</span><span className="text-[#A7ADB3]">: [</span>{"\n"}
-        {"    {"}<span className="text-[#7BA7CC]">&quot;OWES_TO&quot;</span><span className="text-[#A7ADB3]">: </span><span className="text-[#52C4A4]">&quot;Veli&quot;</span>{"}"}{"\n"}
+        {"    {"}<span className="text-[#7BA7CC]">&quot;NARRATED_FROM&quot;</span><span className="text-[#A7ADB3]">: </span><span className="text-[#52C4A4]">&quot;Yaḥyā b. Saʿīd&quot;</span>{"}"}{"\n"}
         {"  "}<span className="text-[#A7ADB3]">]</span>{"\n"}
         <span className="text-[#5A6A7E]">{"}"}</span>
       </pre>
@@ -71,9 +72,9 @@ function ExtractionVisual() {
 
 function ReviewVisual() {
   const items = [
-    { icon: "✓", label: "Ali BETRAYS Veli — E03", color: "#52C4A4", bg: "rgba(82,196,164,0.1)" },
-    { icon: "✕", label: "Memo = Detective? — low conf.", color: "#D4785A", bg: "rgba(212,120,90,0.1)" },
-    { icon: "?", label: '"Ali" = "Memo"? Merge?', color: "#E9AE3F", bg: "rgba(233,174,63,0.1)", merge: true },
+    { icon: "✓", label: "al-Ḥumaydī NARRATED_FROM Sufyān", color: "#52C4A4", bg: "rgba(82,196,164,0.1)" },
+    { icon: "✕", label: "ʿUmar NARRATED_FROM Abū Hurayra — no source span", color: "#D4785A", bg: "rgba(212,120,90,0.1)" },
+    { icon: "?", label: '"Ibn ʿUyayna" = "Sufyān b. ʿUyayna"?', color: "#E9AE3F", bg: "rgba(233,174,63,0.1)", merge: true },
   ];
   return (
     <div className="mt-5 space-y-2">
@@ -139,7 +140,7 @@ function VersionVisual() {
 }
 
 function DomainVisual() {
-  const domains = ["Story", "Legal", "Research", "Finance", "Medical", "Enterprise"];
+  const domains = ["Hadith", "History", "Legal", "Research", "Medical", "Story"];
   return (
     <div className="mt-4 flex flex-wrap gap-1.5">
       {domains.map((d, i) => (
@@ -162,14 +163,14 @@ export default function Features() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <AnimatedSection className="text-center mb-14">
-          <p className="label text-[#A7ADB3] mb-4">Features</p>
+          <p className="label text-[#A7ADB3] mb-4">What We&apos;re Building</p>
           <h2 className="heading-l text-white mb-4 max-w-2xl mx-auto">
             Every layer of intelligence,{" "}
             <GradientText variant="brand">fully in your hands</GradientText>
           </h2>
           <p className="text-[17px] text-[#A7ADB3] max-w-xl mx-auto leading-relaxed">
-            From schema definition to graph exploration — every step is
-            configurable, reviewable, and version-controlled.
+            The core components of the first open-source release — from schema
+            definition to graph exploration, every step reviewable and versioned.
           </p>
         </AnimatedSection>
 
@@ -187,14 +188,14 @@ export default function Features() {
                 </div>
                 <div>
                   <h3 className="text-[17px] font-semibold text-white">Schema Studio</h3>
-                  <Badge variant="primary" className="mt-1">AI-Assisted</Badge>
+                  <Badge variant="primary" className="mt-1">Drift Guard</Badge>
                 </div>
               </div>
               <p className="text-[15px] text-[#A7ADB3] leading-relaxed mb-2">
-                Design your knowledge ontology with AI assistance. Define node types, relations, 
-                properties, extraction hints and validation rules — all from a visual dashboard. 
-                AI suggests domain-specific types from your first uploads. You approve, reject, 
-                or customize everything.
+                Define node types, relations, properties and validation rules once. The schema
+                is locked during extraction: when the model wants a type that doesn&apos;t exist,
+                it becomes a proposal you approve or reject — so the schema never drifts on
+                its own.
               </p>
               <SchemaStudioVisual />
             </div>
@@ -210,7 +211,7 @@ export default function Features() {
                 <h3 className="text-[15px] font-semibold text-white">AI Extraction Engine</h3>
               </div>
               <p className="text-[13px] text-[#A7ADB3] leading-relaxed">
-                Entity, relation, event and state-change extraction — guided by your schema, not a generic model.
+                Schema-constrained extraction where every triple carries the source span it was read from.
               </p>
               <ExtractionVisual />
             </div>
@@ -226,7 +227,7 @@ export default function Features() {
                 <h3 className="text-[15px] font-semibold text-white">Human-in-the-Loop Review</h3>
               </div>
               <p className="text-[13px] text-[#A7ADB3] leading-relaxed">
-                AI proposes, you decide. Review uncertain extractions, resolve entity conflicts, and ensure your graph stays clean.
+                The model proposes, you decide. Ungrounded claims are flagged, name variants are resolved by a human.
               </p>
               <ReviewVisual />
             </div>
@@ -242,7 +243,7 @@ export default function Features() {
                 <h3 className="text-[15px] font-semibold text-white">Iterative Graph Growth</h3>
               </div>
               <p className="text-[13px] text-[#A7ADB3] leading-relaxed">
-                Every new episode or document adds a delta. Your graph grows organically — never overwrites, always expands.
+                Every new source adds a delta. The graph grows — never overwrites, always expands.
               </p>
               <SparklineVisual />
             </div>
@@ -274,7 +275,7 @@ export default function Features() {
                 <h3 className="text-[15px] font-semibold text-white">Any Domain</h3>
               </div>
               <p className="text-[13px] text-[#A7ADB3] leading-relaxed">
-                Story, legal, research, enterprise — one platform, infinite knowledge structures.
+                Isnad chains are the first case study. The schema-driven design is meant for any domain.
               </p>
               <DomainVisual />
             </div>

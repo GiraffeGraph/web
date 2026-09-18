@@ -2,10 +2,11 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { PlayCircle } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Github } from "lucide-react";
+import { ButtonLink } from "@/components/ui/Button";
 import { GradientText } from "@/components/ui/GradientText";
 import { Logo } from "@/components/ui/Logo";
+import { GITHUB_ORG_URL } from "@/lib/links";
 
 const GraphBackground = dynamic(
   () => import("@/components/graph/GraphBackground"),
@@ -184,20 +185,19 @@ function GraphExplorer() {
 
 function SchemaPanel() {
   const nodeTypes=[
-    {label:"Character",color:"#E9AE3F"},{label:"Event",color:"#A7ADB3"},
-    {label:"Secret",color:"#D4785A"},{label:"Location",color:"#52C4A4"},
-    {label:"Alliance",color:"#7BA7CC"},
+    {label:"Narrator",color:"#E9AE3F"},{label:"Hadith",color:"#A7ADB3"},
+    {label:"Collection",color:"#52C4A4"},{label:"Source Span",color:"#7BA7CC"},
   ];
   const relations=[
-    {label:"BETRAYS",from:"Character",to:"Character"},
-    {label:"OWES_TO",from:"Character",to:"Character"},
-    {label:"KNOWS_ABOUT",from:"Character",to:"Secret"},
+    {label:"NARRATED_FROM",from:"Narrator",to:"Narrator"},
+    {label:"TRANSMITS",from:"Narrator",to:"Hadith"},
+    {label:"RECORDED_IN",from:"Hadith",to:"Collection"},
   ];
   return (
     <div className="h-full flex flex-col bg-[#1D2E47] border-r border-[#1A2F44] p-3 overflow-hidden">
       <div className="flex items-center justify-between mb-3 flex-shrink-0">
         <span className="text-[11px] font-semibold text-white">Schema Studio</span>
-        <span className="text-[9px] bg-[rgba(212,120,90,0.2)] border border-[rgba(212,120,90,0.3)] text-[#D4785A] px-1.5 py-0.5 rounded-full">v2 active</span>
+        <span className="text-[9px] bg-[rgba(212,120,90,0.2)] border border-[rgba(212,120,90,0.3)] text-[#D4785A] px-1.5 py-0.5 rounded-full">v1 locked</span>
       </div>
       <div className="mb-3 flex-shrink-0">
         <p className="text-[9px] text-[#5A6A7E] uppercase tracking-widest mb-1.5">Node Types</p>
@@ -242,7 +242,7 @@ function ProductMockup() {
           <div className="flex-1 bg-[#0B1624] rounded-md h-5 flex items-center gap-1.5 px-2 max-w-xs mx-auto">
             <Logo size={12} showText={false}/>
             <span className="text-[10px] text-[#5A6A7E] font-mono">
-              app.giraffegraph.com/projects/breaking-bad/graph
+              concept preview — isnad-chains/graph
             </span>
           </div>
         </div>
@@ -277,32 +277,30 @@ export default function Hero() {
           <span className="relative inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[13px] font-medium text-[#F0C468] border border-[rgba(233,174,63,0.3)] overflow-hidden"
             style={{background:"rgba(233,174,63,0.08)"}}>
             <span className="absolute inset-0 shimmer opacity-30" aria-hidden="true"/>
-            <span className="relative">✦ AI-Powered Knowledge Graph Platform</span>
+            <span className="relative">✦ Open Source · In Development</span>
           </span>
         </motion.div>
         <motion.h1 {...s(1)} className="heading-xl max-w-[780px] mb-6">
-          From Raw Text to a{" "}
-          <GradientText variant="brand">Living Knowledge Graph</GradientText>
+          LLMs Propose.{" "}
+          <GradientText variant="brand">Humans Verify.</GradientText>
         </motion.h1>
         <motion.p {...s(2)} className="body-l text-[#A7ADB3] max-w-[560px] mb-10">
-          Define your schema. Upload your data. Let AI extract entities, relations,
-          and events — then watch your knowledge graph grow with every new input.{" "}
-          <span className="text-white opacity-70">Human-controlled.</span>{" "}
-          <span className="text-white opacity-70">Domain-adaptive.</span>{" "}
-          <span className="text-white opacity-70">Dashboard-managed.</span>
+          GiraffeGraph is an open-source knowledge graph engine that keeps a human
+          in the loop — so LLM extraction stays grounded in the source and the
+          schema stays what you designed.{" "}
+          <span className="text-white opacity-70">No hallucinated facts.</span>{" "}
+          <span className="text-white opacity-70">No schema drift.</span>
         </motion.p>
         <motion.div {...s(3)} className="flex flex-col sm:flex-row gap-3 mb-10">
-          <Button variant="primary" size="md">Start Building Free →</Button>
-          <Button variant="secondary" size="md"><PlayCircle size={16}/> See Live Demo</Button>
+          <ButtonLink href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" variant="primary" size="md">
+            <Github size={16} aria-hidden="true"/> Follow on GitHub
+          </ButtonLink>
+          <ButtonLink href="#research" variant="secondary" size="md">About the Research →</ButtonLink>
         </motion.div>
         <motion.div {...s(4)} className="flex items-center gap-3 text-[13px] text-[#5A6A7E]">
-          <div className="flex -space-x-1.5">
-            {["from-[#E9AE3F] to-[#C4893A]","from-[#52C4A4] to-[#3A9A80]","from-[#7BA7CC] to-[#5A87AC]","from-[#D4785A] to-[#B0583A]","from-[#A7ADB3] to-[#7A8390]"].map((g,i)=>(
-              <div key={i} className={`w-7 h-7 rounded-full bg-gradient-to-br ${g} border-2 border-[#0B1624]`} aria-hidden="true"/>
-            ))}
-          </div>
+          <span>First case study: hadith isnad chains</span>
           <span className="h-4 w-px bg-[#1A2F44]" aria-hidden="true"/>
-          <span>Trusted by narrative teams, researchers & knowledge engineers</span>
+          <span>Paper in preparation</span>
         </motion.div>
       </div>
 

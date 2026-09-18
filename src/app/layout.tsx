@@ -17,16 +17,17 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://giraffegraph.com"),
-  title: "GiraffeGraph — AI-Powered Knowledge Graph Platform",
+  title: "GiraffeGraph — Open-Source Human-in-the-Loop Knowledge Graph Engine",
   description:
-    "Turn raw text into a living knowledge graph. AI extracts. You control. Graph grows. Schema-driven, versioned, queryable — built for story universes, research, and enterprise knowledge.",
+    "An open-source engine where LLMs propose knowledge graph facts and humans verify them — preventing hallucination and schema drift. First case study: hadith isnad chains.",
   keywords: [
     "knowledge graph",
-    "AI extraction",
-    "Neo4j",
-    "schema studio",
-    "narrative intelligence",
+    "human-in-the-loop",
+    "LLM hallucination",
+    "schema drift",
+    "hadith isnad",
     "entity resolution",
+    "open source",
   ],
   icons: {
     icon: [
@@ -37,9 +38,9 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "GiraffeGraph — From Raw Text to a Living Knowledge Graph",
+    title: "GiraffeGraph — LLMs Propose. Humans Verify.",
     description:
-      "Define your schema. Upload your data. Let AI extract entities, relations, and events — then watch your knowledge graph grow.",
+      "Open-source human-in-the-loop knowledge graph engine against hallucination and schema drift. First case study: hadith isnad chains.",
     type: "website",
     url: "https://giraffegraph.com",
     images: [
@@ -53,9 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "GiraffeGraph — From Raw Text to a Living Knowledge Graph",
+    title: "GiraffeGraph — LLMs Propose. Humans Verify.",
     description:
-      "Define your schema. Upload your data. Let AI extract entities, relations, and events — then watch your knowledge graph grow.",
+      "Open-source human-in-the-loop knowledge graph engine against hallucination and schema drift. First case study: hadith isnad chains.",
     images: ["/web-app-manifest-512x512.png"],
   },
 };

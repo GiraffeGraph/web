@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import Graph from "graphology";
 import { SigmaContainer, useLoadGraph } from "@react-sigma/core";
 import "@react-sigma/core/lib/style.css";
-import forceAtlas2 from "graphology-layout-forceatlas2";
 import { createNodeBorderProgram } from "@sigma/node-border";
 import EdgeCurveProgram from "@sigma/edge-curve";
 import type { Attributes } from "graphology-types";
@@ -28,26 +27,33 @@ interface KGEdge extends Attributes {
   size: number; color: string; label: string; type: string;
 }
 
+// Isnad of Sahih al-Bukhari #1 ("Actions are judged by intentions").
+// NARRATED_FROM points from each narrator to the one they heard it from.
+// Fixed zigzag layout: a chain reads better left-to-right than force-directed.
+// Order follows transmission, from the Prophet to the collector.
 const KG_NODES = [
-  { id: "ali",      label: "Ali",          color: "#C4893A", glowColor: "#E9AE3F55", rimColor: "#E9AE3F", size: 16, selected: true  },
-  { id: "veli",     label: "Veli",         color: "#C4893A", glowColor: "#E9AE3F44", rimColor: "#E9AE3F", size: 13, selected: false },
-  { id: "secret",   label: "The Secret",   color: "#6A7A8A", glowColor: "#A7ADB344", rimColor: "#A7ADB3", size: 11, selected: false },
-  { id: "hq",       label: "Istanbul HQ",  color: "#2E7A68", glowColor: "#52C4A444", rimColor: "#52C4A4", size: 12, selected: false },
-  { id: "alliance", label: "The Alliance", color: "#8A4030", glowColor: "#D4785A44", rimColor: "#D4785A", size: 12, selected: false },
-  { id: "nadia",    label: "Nadia",        color: "#C4893A", glowColor: "#E9AE3F33", rimColor: "#E9AE3F", size: 10, selected: false },
-  { id: "memo",     label: "Memo",         color: "#2A5A8A", glowColor: "#7BA7CC33", rimColor: "#7BA7CC", size: 10, selected: false },
-  { id: "doc",      label: "Document",     color: "#2A5A8A", glowColor: "#7BA7CC33", rimColor: "#7BA7CC", size: 9,  selected: false },
+  { id: "bukhari",  label: "al-Bukhārī",        x: 7, y: 0,   color: "#C4893A", glowColor: "#E9AE3F44", rimColor: "#E9AE3F", size: 12, selected: false },
+  { id: "humaydi",  label: "al-Ḥumaydī",        x: 6, y: 1.6, color: "#C4893A", glowColor: "#E9AE3F33", rimColor: "#E9AE3F", size: 10, selected: false },
+  { id: "sufyan",   label: "Sufyān",            x: 5, y: 0,   color: "#C4893A", glowColor: "#E9AE3F33", rimColor: "#E9AE3F", size: 10, selected: false },
+  { id: "yahya",    label: "Yaḥyā b. Saʿīd",    x: 4, y: 1.6, color: "#C4893A", glowColor: "#E9AE3F55", rimColor: "#E9AE3F", size: 15, selected: false },
+  { id: "taymi",    label: "al-Taymī",          x: 3, y: 0,   color: "#C4893A", glowColor: "#E9AE3F33", rimColor: "#E9AE3F", size: 10, selected: false },
+  { id: "alqama",   label: "ʿAlqama",           x: 2, y: 1.6, color: "#C4893A", glowColor: "#E9AE3F33", rimColor: "#E9AE3F", size: 10, selected: false },
+  { id: "umar",     label: "ʿUmar",             x: 1, y: 0,   color: "#C4893A", glowColor: "#E9AE3F44", rimColor: "#E9AE3F", size: 12, selected: false },
+  { id: "prophet",  label: "The Prophet ﷺ",     x: 0, y: 1.6, color: "#2E7A68", glowColor: "#52C4A455", rimColor: "#52C4A4", size: 14, selected: false },
+  { id: "hadith",   label: "“Actions are by intentions”", x: 1.5, y: 3.4, color: "#6A7A8A", glowColor: "#A7ADB344", rimColor: "#A7ADB3", size: 11, selected: false },
+  { id: "sahih",    label: "Ṣaḥīḥ al-Bukhārī #1", x: 5.5, y: 3.4, color: "#2A5A8A", glowColor: "#7BA7CC33", rimColor: "#7BA7CC", size: 11, selected: false },
 ];
 
 const KG_EDGES = [
-  { s: "ali",      t: "veli",    label: "BETRAYS"     },
-  { s: "ali",      t: "secret",  label: "KNOWS_ABOUT" },
-  { s: "veli",     t: "secret",  label: "OWNS"        },
-  { s: "veli",     t: "hq",      label: "MANAGES"     },
-  { s: "ali",      t: "nadia",   label: "OWES_TO"     },
-  { s: "alliance", t: "hq",      label: "OPERATES_AT" },
-  { s: "memo",     t: "veli",    label: "REPORTS_TO"  },
-  { s: "doc",      t: "hq",      label: "LINKED_TO"   },
+  { s: "umar",    t: "prophet", label: "NARRATED_FROM" },
+  { s: "alqama",  t: "umar",    label: "NARRATED_FROM" },
+  { s: "taymi",   t: "alqama",  label: "NARRATED_FROM" },
+  { s: "yahya",   t: "taymi",   label: "NARRATED_FROM" },
+  { s: "sufyan",  t: "yahya",   label: "NARRATED_FROM" },
+  { s: "humaydi", t: "sufyan",  label: "NARRATED_FROM" },
+  { s: "bukhari", t: "humaydi", label: "NARRATED_FROM" },
+  { s: "prophet", t: "hadith",  label: "TRANSMITS"     },
+  { s: "hadith",  t: "sahih",   label: "RECORDED_IN"   },
 ];
 
 function LoadKGGraph() {
@@ -56,13 +62,12 @@ function LoadKGGraph() {
   useEffect(() => {
     const graph = new Graph<KGNode, KGEdge>({ type: "directed" });
 
-    KG_NODES.forEach((n, i) => {
-      const angle = (2 * Math.PI * i) / KG_NODES.length;
+    KG_NODES.forEach((n) => {
       graph.addNode(n.id, {
         label: n.label, size: n.size,
         color: n.color, glowColor: n.glowColor, rimColor: n.rimColor,
         type: "planet", selected: n.selected ?? false,
-        x: Math.cos(angle) * 6, y: Math.sin(angle) * 6,
+        x: n.x, y: n.y,
       });
     });
 
@@ -72,11 +77,6 @@ function LoadKGGraph() {
         size: 1.5, color: "#2A4060",
       } as KGEdge);
       void i;
-    });
-
-    forceAtlas2.assign(graph, {
-      iterations: 120,
-      settings: { gravity: 2, scalingRatio: 8, strongGravityMode: true },
     });
 
     loadGraph(graph);
@@ -99,10 +99,13 @@ export default function KnowledgeGraphMockup() {
         graph={Graph}
         settings={{
           renderLabels: true,
+          stagePadding:    70,
           renderEdgeLabels: true,
           labelColor:     { color: "#CBD5E1" },
           labelSize:       11,
-          labelDensity:    1,
+          labelDensity:    10,
+          labelGridCellSize: 20,
+          labelRenderedSizeThreshold: 0,
           edgeLabelColor:  { color: "#64748B" },
           edgeLabelSize:   9,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any

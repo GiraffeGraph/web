@@ -2,16 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Menu, X, Github } from "lucide-react";
+import { ButtonLink } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
+import { GITHUB_ORG_URL } from "@/lib/links";
 
 const navLinks = [
-  { label: "Features", href: "#features" },
   { label: "How It Works", href: "#how-it-works" },
-  { label: "Use Cases", href: "#use-cases" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Docs", href: "#" },
+  { label: "Features", href: "#features" },
+  { label: "Case Study", href: "#case-study" },
+  { label: "Research", href: "#research" },
+  { label: "Contributors", href: "#contributors" },
 ];
 
 export default function Navbar() {
@@ -70,15 +71,10 @@ export default function Navbar() {
 
           {/* Right actions */}
           <div className="hidden md:flex items-center gap-3">
-            <a
-              href="#"
-              className="text-[14px] text-[#A7ADB3] hover:text-white transition-colors duration-200 px-3 py-2"
-            >
-              Sign in
-            </a>
-            <Button size="sm" variant="primary">
-              Get Started
-            </Button>
+            <ButtonLink href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" size="sm" variant="primary">
+              <Github size={16} aria-hidden="true" />
+              GitHub
+            </ButtonLink>
           </div>
 
           {/* Mobile hamburger */}
@@ -128,15 +124,10 @@ export default function Navbar() {
             </ul>
 
             <div className="mt-8 flex flex-col gap-3">
-              <a
-                href="#"
-                className="block text-center py-3 text-[#A7ADB3] hover:text-white transition-colors"
-              >
-                Sign in
-              </a>
-              <Button variant="primary" size="md" className="w-full">
-                Get Started
-              </Button>
+              <ButtonLink href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" variant="primary" size="md" className="w-full">
+                <Github size={16} aria-hidden="true" />
+                GitHub
+              </ButtonLink>
             </div>
           </motion.div>
         )}

@@ -48,15 +48,15 @@ function ChaoticDocuments() {
 
 function OrganizedGraph() {
   const nodes = [
-    { x: 80, y: 60, color: "#E9AE3F", label: "Ali", r: 14 },
-    { x: 180, y: 45, color: "#E9AE3F", label: "Veli", r: 12 },
-    { x: 130, y: 130, color: "#A7ADB3", label: "Secret", r: 10 },
-    { x: 220, y: 120, color: "#52C4A4", label: "HQ", r: 11 },
-    { x: 55, y: 145, color: "#D4785A", label: "Nadia", r: 10 },
+    { x: 40, y: 150, color: "#E9AE3F", label: "Sufyān", r: 10 },
+    { x: 95, y: 100, color: "#E9AE3F", label: "Yaḥyā", r: 13 },
+    { x: 150, y: 130, color: "#E9AE3F", label: "al-Taymī", r: 10 },
+    { x: 200, y: 75, color: "#E9AE3F", label: "ʿAlqama", r: 10 },
+    { x: 245, y: 40, color: "#52C4A4", label: "ʿUmar", r: 12 },
   ];
 
   const edges = [
-    [0, 1], [0, 2], [1, 2], [1, 3], [0, 4],
+    [0, 1], [1, 2], [2, 3], [3, 4],
   ];
 
   return (
@@ -146,15 +146,15 @@ export default function Problem() {
           <AnimatedSection direction="left">
             <p className="label text-[#E9AE3F] mb-3">The Challenge</p>
             <h2 className="heading-m text-white mb-5">
-              Your data has structure.{" "}
-              <span className="text-[#A7ADB3]">You just can&apos;t see it yet.</span>
+              LLMs are fluent.{" "}
+              <span className="text-[#A7ADB3]">That doesn&apos;t make them faithful.</span>
             </h2>
             <ul className="space-y-3 mb-8">
               {[
-                "Transcripts and scripts are trapped in unstructured text",
-                "No way to query relationships between characters or entities",
-                "Static text can't capture how things change over time",
-                "Manual knowledge management doesn't scale past a few episodes",
+                "Hallucination: plausible narrators and links that no source contains",
+                "Schema drift: ad-hoc types like HEARD_FROM, TOLD and narratedBy pile up across runs",
+                "Name variants silently merged — or the same person split in two",
+                "No trace of which sentence a fact came from, or who approved it",
               ].map((point, i) => (
                 <li key={i} className="flex items-start gap-2.5 text-[#A7ADB3] text-[15px]">
                   <span className="mt-1 text-[#D4785A] flex-shrink-0">✕</span>
@@ -183,15 +183,15 @@ export default function Problem() {
           <AnimatedSection direction="right" delay={0.15}>
             <p className="label text-[#52C4A4] mb-3">The Solution</p>
             <h2 className="heading-m text-white mb-5">
-              A living graph that{" "}
-              <GradientText variant="brand">grows with your data.</GradientText>
+              Every fact is{" "}
+              <GradientText variant="brand">grounded and approved.</GradientText>
             </h2>
             <ul className="space-y-3 mb-8">
               {[
-                "Schema-driven extraction aligned to your exact domain model",
-                "Query characters, events and relationships by name or property",
-                "Versioned graph tracks how knowledge evolves over time",
-                "Review dashboard scales human oversight without manual labour",
+                "Each extracted triple is tied to the source span it came from",
+                "The schema is locked — new types are proposals, never silent additions",
+                "Entity merges are suggested by the model and decided by a human",
+                "Every change is versioned, so the graph stays auditable",
               ].map((point, i) => (
                 <li key={i} className="flex items-start gap-2.5 text-[#A7ADB3] text-[15px]">
                   <span className="mt-1 text-[#52C4A4] flex-shrink-0">✓</span>
