@@ -242,7 +242,7 @@ function ProductMockup() {
           <div className="flex-1 bg-[#0B1624] rounded-md h-5 flex items-center gap-1.5 px-2 max-w-xs mx-auto">
             <Logo size={12} showText={false}/>
             <span className="text-[10px] text-[#5A6A7E] font-mono">
-              app.giraffegraph.io/projects/breaking-bad/graph
+              app.giraffegraph.com/projects/breaking-bad/graph
             </span>
           </div>
         </div>

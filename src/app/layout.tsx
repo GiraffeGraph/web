@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://giraffegraph.io"),
+  metadataBase: new URL("https://giraffegraph.com"),
   title: "GiraffeGraph — AI-Powered Knowledge Graph Platform",
   description:
     "Turn raw text into a living knowledge graph. AI extracts. You control. Graph grows. Schema-driven, versioned, queryable — built for story universes, research, and enterprise knowledge.",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     description:
       "Define your schema. Upload your data. Let AI extract entities, relations, and events — then watch your knowledge graph grow.",
     type: "website",
-    url: "https://giraffegraph.io",
+    url: "https://giraffegraph.com",
     images: [
       {
         url: "/web-app-manifest-512x512.png",
