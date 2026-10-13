@@ -9,7 +9,7 @@ import { GradientText } from "@/components/ui/GradientText";
 const faqs = [
   {
     q: "Is GiraffeGraph open source?",
-    a: "Yes. GiraffeGraph is developed as an open-source project, and the code will be published on GitHub under an open-source license. There are no paid plans.",
+    a: "It will be. The code is in a private repository while the project is in development and will be published on GitHub under an open-source license at the end of the project. There are no paid plans.",
   },
   {
     q: "Can I use it today?",
