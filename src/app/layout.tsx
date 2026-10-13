@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   title: "GiraffeGraph — Open-Source Human-in-the-Loop Knowledge Graph Engine",
   description:
-    "An open-source engine where LLMs propose knowledge graph facts and humans verify them — preventing hallucination and schema drift. First case study: hadith isnad chains.",
+    "An open-source engine where LLMs propose knowledge graph facts and humans verify them — built to prevent hallucination and schema drift. First case study: hadith isnad chains.",
   keywords: [
     "knowledge graph",
     "human-in-the-loop",

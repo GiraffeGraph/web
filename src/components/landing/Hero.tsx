@@ -121,10 +121,10 @@ export default function Hero() {
         </motion.h1>
         <motion.p {...s(2)} className="body-l text-[#A7ADB3] max-w-[560px] mb-10">
           GiraffeGraph is an open-source knowledge graph engine that keeps a human
-          in the loop — so LLM extraction stays grounded in the source and the
-          schema stays what you designed.{" "}
-          <span className="text-white opacity-70">No hallucinated facts.</span>{" "}
-          <span className="text-white opacity-70">No schema drift.</span>
+          in the loop — built to keep LLM extraction grounded in the source and
+          the schema fixed to what you designed.{" "}
+          <span className="text-white opacity-70">That is the design goal, not a result yet.</span>{" "}
+          <span className="text-white opacity-70">The project measures how well each check works.</span>
         </motion.p>
         <motion.div {...s(3)} className="flex flex-col sm:flex-row gap-3 mb-10">
           <ButtonLink href={GITHUB_ORG_URL} target="_blank" rel="noopener noreferrer" variant="primary" size="md">

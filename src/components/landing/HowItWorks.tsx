@@ -16,7 +16,7 @@ const steps = [
     num: "01",
     icon: LayoutTemplate,
     title: "Schema Design",
-    desc: "Define your node types, relation types and properties. AI can suggest a schema from your first few documents.",
+    desc: "Define your node types, relation types and properties. AI schema suggestions from your first documents are planned.",
     color: "#E9AE3F",
   },
   {
@@ -37,7 +37,7 @@ const steps = [
     num: "04",
     icon: CheckSquare,
     title: "Review & Validate",
-    desc: "Nothing enters the graph unapproved. You accept, reject, edit or merge — ungrounded claims are flagged.",
+    desc: "Every fact enters the graph either through a human decision or through an explicitly recorded policy — and the record says which. You accept, reject, edit or merge.",
     color: "#52C4A4",
   },
   {
@@ -51,7 +51,7 @@ const steps = [
     num: "06",
     icon: Search,
     title: "Explore & Query",
-    desc: "Walk chains visually, query relationships, and trace any fact back to its source and its reviewer.",
+    desc: "Walk chains visually, query relationships, and trace any fact back to its source.",
     color: "#7BA7CC",
   },
 ];
@@ -72,7 +72,7 @@ export default function HowItWorks() {
             6 steps
           </h2>
           <p className="body-m text-[#A7ADB3] max-w-xl mx-auto">
-            The model proposes. A human decides. The graph only keeps what was approved.
+            The model proposes. A human decides. The graph records how each fact was accepted.
           </p>
         </AnimatedSection>
 

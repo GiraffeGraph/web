@@ -194,8 +194,8 @@ export default function Features() {
               <p className="text-[15px] text-[#A7ADB3] leading-relaxed mb-2">
                 Define node types, relations, properties and validation rules once. The schema
                 is locked during extraction: when the model wants a type that doesn&apos;t exist,
-                it becomes a proposal you approve or reject — so the schema never drifts on
-                its own.
+                it is never written to the graph. It appears in the review queue as a proposal,
+                and the schema changes only when you edit it. The panel below is a concept preview.
               </p>
               <SchemaStudioVisual />
             </div>
@@ -227,7 +227,7 @@ export default function Features() {
                 <h3 className="text-[15px] font-semibold text-white">Human-in-the-Loop Review</h3>
               </div>
               <p className="text-[13px] text-[#A7ADB3] leading-relaxed">
-                The model proposes, you decide. Ungrounded claims are flagged, name variants are resolved by a human.
+                The model proposes, you decide. Name variants are resolved by a human. A claim whose quote is missing from the source text goes to review with the reason shown. The queue below is an illustration.
               </p>
               <ReviewVisual />
             </div>
@@ -259,7 +259,7 @@ export default function Features() {
                 <h3 className="text-[15px] font-semibold text-white">Full Versioning</h3>
               </div>
               <p className="text-[13px] text-[#A7ADB3] leading-relaxed">
-                Schema versions, extraction runs, graph deltas — every change is tracked, auditable and reversible.
+                Schema versions, extraction runs, graph deltas — every change is tracked and auditable.
               </p>
               <VersionVisual />
             </div>

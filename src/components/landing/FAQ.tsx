@@ -17,11 +17,11 @@ const faqs = [
   },
   {
     q: "What does \"hallucination\" mean here?",
-    a: "An extracted fact that the source text does not support — for example, a narrator or a link between two narrators that appears nowhere in the chain. GiraffeGraph ties every proposed triple to its source span and keeps it out of the graph until a human approves it.",
+    a: "An extracted fact that the source text does not support — for example, a narrator or a link between two narrators that appears nowhere in the chain. GiraffeGraph is designed so that every proposed triple is tied to its source span and enters the graph only through a human decision or an explicitly recorded policy.",
   },
   {
     q: "What is schema drift?",
-    a: "When an LLM invents its own entity and relation types across runs — HEARD_FROM in one batch, TOLD or narratedBy in the next — the graph slowly stops matching the schema you designed. GiraffeGraph locks the schema and turns every new type into a proposal instead.",
+    a: "When an LLM invents its own entity and relation types across runs — HEARD_FROM in one batch, TOLD or narratedBy in the next — the graph slowly stops matching the schema you designed. GiraffeGraph locks the schema: a type outside it is never written to the graph. It is recorded as a proposal for a human to review, and the schema changes only when you edit it.",
   },
   {
     q: "Why hadith isnad chains?",

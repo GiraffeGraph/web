@@ -183,13 +183,13 @@ export default function Problem() {
           <AnimatedSection direction="right" delay={0.15}>
             <p className="label text-[#52C4A4] mb-3">The Solution</p>
             <h2 className="heading-m text-white mb-5">
-              Every fact is{" "}
+              Designed so every fact is{" "}
               <GradientText variant="brand">grounded and approved.</GradientText>
             </h2>
             <ul className="space-y-3 mb-8">
               {[
                 "Each extracted triple is tied to the source span it came from",
-                "The schema is locked — new types are proposals, never silent additions",
+                "The schema is locked — a type outside it is never written; it becomes a proposal for review",
                 "Entity merges are suggested by the model and decided by a human",
                 "Every change is versioned, so the graph stays auditable",
               ].map((point, i) => (
